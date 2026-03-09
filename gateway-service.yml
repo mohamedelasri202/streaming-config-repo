@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: video-service
+          uri: lb://VIDEO-SERVICE
+          predicates:
+            - Path=/api/videos/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
