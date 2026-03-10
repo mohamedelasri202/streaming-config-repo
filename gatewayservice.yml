@@ -8,12 +8,27 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      # --- CRITICAL CORS SECTION ---
+      globalcors:
+        add-to-chain-parameter: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+      # -----------------------------
       routes:
         - id: video-service-route
-          uri: lb://video-service
+          uri: lb://VIDEO-SERVICE
           predicates:
             - Path=/api/videos/**
         - id: user-service-route
-          uri: lb://user-service
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/api/users/**
