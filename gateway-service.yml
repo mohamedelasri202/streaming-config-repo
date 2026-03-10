@@ -10,10 +10,10 @@ spring:
           lower-case-service-id: true
       routes:
         - id: video-service-route
-          uri: lb://VIDEO-SERVICE
+          uri: lb://video-service
           predicates:
             - Path=/api/videos/**
         - id: user-service-route
-          uri: lb://USER-SERVICE
+          uri: lb://user-service
           predicates:
             - Path=/api/users/**
