@@ -1,15 +1,19 @@
 server:
-  port: 8888
+  port: 8882
 
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
-        - id: video-service
+        - id: video-service-route
           uri: lb://VIDEO-SERVICE
           predicates:
             - Path=/api/videos/**
-        - id: user-service
+        - id: user-service-route
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/users/**
